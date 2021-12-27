@@ -26,7 +26,7 @@ Injection is extremely simple. Once you have figured out how to watch and decode
 
 # Feel like buying me a cup of coffee?
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RZCNSSMSHTCE6)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://paypal.me/kinetix?country.x=US&locale.x=en_US)
 
 # Legal stuff
 
