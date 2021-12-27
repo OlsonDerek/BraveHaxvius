@@ -28,6 +28,20 @@ Injection is extremely simple. Once you have figured out how to watch and decode
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://paypal.me/kinetix?country.x=US&locale.x=en_US)
 
+# Updates to Original Brave Haxvius
+
+![image](https://user-images.githubusercontent.com/842770/147507462-6ea924ea-70db-4025-bdce-7458d34b1a02.png)
+
+- Party changing available mid-way
+- Separate party for raid. 
+- Run Arena in between runs
+- Run Raid inbetween runs
+- Queue up Missions to run in succession
+- Check current energy level
+- Add logging to show what party is going
+- Added End button to bail on longer repeats without having to close the program
+- Added @NathyPooh's updates and changes for functionality
+
 # Legal stuff
 
 MIT License
