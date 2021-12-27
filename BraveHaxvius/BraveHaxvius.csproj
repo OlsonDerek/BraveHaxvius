@@ -39,9 +39,8 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BraveExvius.cs" />
+    <Compile Include="Data\Ability.cs" />
     <Compile Include="Data\Challenge.cs" />
+    <Compile Include="Data\Icon.cs" />
     <Compile Include="Data\ImportantItem.cs" />
     <Compile Include="Data\Sublimation.cs" />
     <Compile Include="Data\Ticket.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Data\Mail.cs" />
     <Compile Include="Data\News.cs" />
     <Compile Include="Crypto.cs" />
+    <Compile Include="Data\VisionCard.cs" />
     <Compile Include="Facebook.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,11 +85,12 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

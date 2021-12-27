@@ -7,6 +7,9 @@
         Title="FFBE Packet Decoder" Height="600" Width="1200" Closing="MetroWindow_Closing">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
+            <Button ToolTip="Clear Request List" Click="Button2_Click">
+                <iconPacks:PackIconModern Kind="Clean" Width="24" Height="24"/>
+            </Button>
             <Button ToolTip="Uninstall certificate" Click="Button_Click">
                 <iconPacks:PackIconModern Kind="DoorLeave" Width="24" Height="24"/>
             </Button>

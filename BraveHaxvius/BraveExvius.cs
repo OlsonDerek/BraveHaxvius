@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Net;
 using System.IO;
 using System.Threading;
 using Newtonsoft.Json;
@@ -11,18 +9,20 @@ using BraveHaxvius.Data;
 
 namespace BraveHaxvius
 {
+    
     public class BraveExvius
     {
-        public String AppVersion { get; set; } = "1028";
+       
+        public String AppVersion { get; set; } = "9114";
         public String RscVersion { get; set; } = "0";
-        public String MstVersion { get; set; } = "1004";
-        public String Device { get; set; } = "iPhone9,3";
+        public String MstVersion { get; set; } = "9781";
+        public String Device { get; set; } = "iPhone10,5_ios14.2";
         //public String Device { get; set; } = "XT890";
         //public String Device { get; set; } = "SM-E7000";
-        public String OperatingSystem { get; set; } = "ios10.2.1";
+        public String OperatingSystem { get; set; } = "5_ios14.2";
         //public String OperatingSystem { get; set; } = "android4.4.2";
         public String Locale { get; set; } = "US";
-        public String BuildVersion { get { return Locale == "JP" ? "ver.2.9.3" : "ver.2.3.1"; } }
+        public String BuildVersion { get { return Locale == "JP" ? "ver.2.9.3" : "ver.9251"; } }
         public String UserName { get; set; }
         public String UserId { get; set; }
         public String Password { get; set; }
@@ -40,6 +40,23 @@ namespace BraveHaxvius
         public String UserAgent { get { return Device + "_" + OperatingSystem; } }
         public String PurchaseSignature { get { return Device.Contains("iPhone") ? "1" : OperatingSystem.Contains("amazon") ? "101" : "2"; } }
         public String LastSignalKey { get; set; }
+        public int? currentEnergy { get; set; }
+        public int? maxEnergy { get; set; }
+        public String TotalEnergy
+        {
+            get
+            {
+                if (GetUserInfo == null)
+                {
+                    UpdateGetUserInfo();
+                }
+
+                currentEnergy = Int32.Parse(GetUserInfo[GameObject.UserTeamInfo].First()[Variable.Energy].ToString());
+                maxEnergy = Int32.Parse(GetUserInfo[GameObject.UserTeamInfo].First()[Variable.EnergyMax].ToString());
+
+                return $"{currentEnergy} / {maxEnergy}";
+            }
+        }
 
         public Networking Network { get; set; }
 
@@ -106,6 +123,8 @@ namespace BraveHaxvius
         public List<String> GachaId { get; set; } = new List<String>();
         public List<String> GachaDetailId { get; set; } = new List<String>();
         public JObject GetUserInfo;
+        public JObject GetUserInfo2;
+        public JObject GetUserInfo3;
         public void Login()
         {
             if (Locale != "JP" && FacebookUserId.Contains("@"))
@@ -125,6 +144,7 @@ namespace BraveHaxvius
                 FacebookUserId = fb.Id;
                 FacebookToken = fb.AccessToken;
             }
+
             //DeviceId = Guid.NewGuid().ToString().ToUpper();
             //b.ContactId = Crypto.Encrypt(b.DeviceId, "Zy3MDURw");
             //AdvertisingId = Guid.NewGuid().ToString().ToUpper();
@@ -136,8 +156,9 @@ namespace BraveHaxvius
                 UpdateNews();
                 UpdateExpeditions();
             }
-            //UpdateMail();
+            UpdateMail();
             UpdateGachaList();
+            LoggedIn = true;
         }
         public void LoginUnlinkedAccount(String userId, String pw, String gumiId, String gumiToken)
         {
@@ -182,8 +203,8 @@ namespace BraveHaxvius
         }
         public Boolean CompletedSwitch(String switchId)
         {
-            var uniqueSwitch = Switch.Switchs.First(s => s.SwitchId == switchId);
-            if (GetUserInfo == null)
+            var uniqueSwitch = Switch.Switchs.FirstOrDefault(s => s.SwitchId == switchId);
+            if (uniqueSwitch == null || GetUserInfo == null)
                 return true;
             var switches = GetUserInfo[GameObject.UserSwitchInfo_8J1R5PXG];
             var switchBits = switches.First(s => s[Variable.SwitchType].ToString() == uniqueSwitch.SwitchType)[Variable.RequiredSwitchId].ToString();
@@ -198,7 +219,7 @@ namespace BraveHaxvius
         }
         public void UpdateGachaList()
         {
-            var gachaList = GetUserInfo[GameObject.GachaMst];
+            var gachaList = GetUserInfo2[GameObject.GachaMst];
             foreach (var gacha in gachaList)
                 GachaId.Add(gacha[Variable.GachaId] + " : " + gacha[Variable.Description] + " , " + gacha[Variable.InternalDescription]);
         }
@@ -218,7 +239,7 @@ namespace BraveHaxvius
                         new JObject(
                             new JProperty("gdR2tJI9", slotId),
                             new JProperty(Variable.ItemCount, itemId),
-                            new JProperty("Vt2I4RjX", "20:" + Item.SummonTicket.ItemId + ":1")))));
+                            new JProperty("Vt2I4RjX", "20:" + Item.SummonTicket_1300000005.ItemId + ":1")))));
         }
         public void UnfavoriteAll()
         {
@@ -396,7 +417,7 @@ namespace BraveHaxvius
             while (newUnits.Count(u => u.UnitId == unit.BaseUnitId) == 0)
             {
                 newUnits.Clear();
-                //DoMission(Mission.AirshipDeck, false, "20:" + Item.SummonTicket.ItemId + ":9");
+                //DoMission(Mission.AirshipDeck, false, "20:" + Item.SummonTicket_1300000005.ItemId + ":9");
                 for (int j = 0; j < 9; j++)
                 {
                     status?.Invoke(iteration++);
@@ -481,7 +502,7 @@ namespace BraveHaxvius
             while (newUnits.Count(u => u.UnitId == unit.BaseUnitId) == 0)
             {
                 newUnits.Clear();
-                DoMission(Mission.AirshipDeck, false, "20:" + Item.SummonTicket.ItemId + ":9");
+                DoMission(Mission.AirshipDeck, false, "20:" + Item.SummonTicket_1300000005.ItemId + ":9");
                 for (int j = 0; j < 9; j++)
                 {
                     status?.Invoke(iteration++);
@@ -615,7 +636,7 @@ namespace BraveHaxvius
         public void UpdateNews()
         {
             News.Clear();
-            var newsList = GetUserInfo[GameObject.NoticeMstNew].Select(n => new News
+            var newsList = GetUserInfo2[GameObject.NoticeMstNew].Select(n => new News
             {
                 Id = n[Variable.NoticeId].ToString(),
                 Type = n[Variable.NoticeType].ToString(),
@@ -637,15 +658,15 @@ namespace BraveHaxvius
         {
             Mail.Clear();
             var MailList = Network.SendPacket(Request.MailList);
-            if (MailList == null || MailList[GameObject.UserMailInfo] != null)
+            if (MailList == null || MailList[GameObject.UserMailInfo] == null)
                 return;
-            var mailList = Network.SendPacket(Request.MailList)[GameObject.UserMailInfo].Select(m => new Mail
+            var mailList = MailList[GameObject.UserMailInfo].Select(m => new Mail
             {
                 Id = m[Variable.MailId].ToString(),
                 Title = m[Variable.MailTitle].ToString().StartsWith("{") ?
-                     ((JObject)JsonConvert.DeserializeObject(m[Variable.MailTitle].ToString()))["en"].ToString() : Text.Texts[m[Variable.MailTitle].ToString()],
+                     ((JObject)JsonConvert.DeserializeObject(m[Variable.MailTitle].ToString()))["en"]?.ToString() ?? ((JObject)JsonConvert.DeserializeObject(m[Variable.MailTitle].ToString()))["message"]?.ToString() : Text.Texts[m[Variable.MailTitle].ToString()],
                 Message = m[Variable.MailTitle].ToString().StartsWith("{") ?
-                    ((JObject)JsonConvert.DeserializeObject(m[Variable.Message].ToString()))["en"].ToString() :
+                    ((JObject)JsonConvert.DeserializeObject(m[Variable.Message].ToString()))["en"]?.ToString() ?? ((JObject)JsonConvert.DeserializeObject(m[Variable.MailTitle].ToString()))["message"]?.ToString() :
                         Text.Texts.ContainsKey(m[Variable.Message].ToString()) ? Text.Texts[m[Variable.Message].ToString()] : m[Variable.Message].ToString(),
                 Type = m[Variable.MailType].ToString(),
                 Items = m[Variable.MailItems].ToString(),
@@ -724,7 +745,7 @@ namespace BraveHaxvius
         }
         public JObject DoMission(Mission mission, Boolean useFriend = false, String itemHax = null,
             String equipHax = null, String materiaHax = null, Boolean getTrophies = false, Boolean completeChallenges = false, Boolean collectLoot = false,
-            Boolean collectUnits = false, Boolean exploreTreasure = false, String lbIncrease = null, UInt16 SleepTime = 0)
+            Boolean collectUnits = false, Boolean exploreTreasure = false, String lbIncrease = null, UInt16 SleepTime = 0, bool isParadeMissionEnd = false)
         {
             JToken reinforcement = null;
             if (useFriend)
@@ -771,6 +792,8 @@ namespace BraveHaxvius
             var BattleInfo = new List<JToken> { WaveBattleInfo, EncountInfo, ScenarioBattleInfo };
             var itemCount = new Dictionary<String, UInt16>();
             var itemStolenCount = new Dictionary<String, UInt16>();
+	    var importantItemCount = new Dictionary<String, UInt16>();
+            var equipmentCount = new Dictionary<String, UInt16>();
             var possibleDropTypes = new List<String> { Variable.MonsterDrops, Variable.MonsterSpecialDrops };
             var unitDrops = new List<String>();
 
@@ -790,13 +813,37 @@ namespace BraveHaxvius
                     {
                         if (enemy[dropType] != null && enemy[dropType].ToString().Length > 0)
                         {
-                            var parts = enemy[dropType].ToString().Split(new char[1] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-                            var id = parts[1];
-                            var count = UInt16.Parse(parts[2]);
-                            if (itemCount.ContainsKey(id))
-                                itemCount[id] += count;
-                            else
-                                itemCount.Add(id, count);
+                            var items = enemy[dropType].ToString().Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                            foreach (var item in items)
+                            {
+                                    var parts = item.ToString().Split(':');
+                                    var id = parts[1];
+                                    var count = UInt16.Parse(parts[2]);
+                                    switch (parts[0])
+                                    {
+                                        case "20":
+                                            if (itemCount.ContainsKey(id))
+                                                itemCount[id] += count;
+                                            else
+                                                itemCount.Add(id, count);
+                                            break;
+                                        case "21":
+                                            if (equipmentCount.ContainsKey(id))
+                                                equipmentCount[id] += count;
+                                            else
+                                                equipmentCount.Add(id, count);
+                                            break;
+                                        case "23":
+                                            if (importantItemCount.ContainsKey(id))
+                                                importantItemCount[id] += count;
+                                            else
+                                                importantItemCount.Add(id, count);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                     
+                                }
                         }
                     }
                     if (enemy[Variable.MonsterUnitDrops] != null && enemy[Variable.MonsterUnitDrops].ToString().Length > 0)
@@ -828,11 +875,14 @@ namespace BraveHaxvius
 
             var UnitsDropped = collectUnits ? String.Join(",", unitDrops) : "";
             var ItemsDropped = collectLoot ? String.Join(",", itemCount.Select(k => "20:" + k.Key + ":" + k.Value)) : "";
+	    var EquipmentDropped = collectLoot ? String.Join(",", equipmentCount.Select(k => "21:" + k.Key + ":" + k.Value)) : "";
+            var ImportantItemsDropped = collectLoot ? String.Join(",", importantItemCount.Select(k => "23:" + k.Key + ":" + k.Value)) : "";
             var ItemsStolen = collectLoot ? String.Join(",", itemStolenCount.Select(k => "20:" + k.Key + ":" + k.Value)) : "";
             TotalDamage = new Random().Next((int)(TotalDamage * 1.05f), (int)(TotalDamage * 1.45f));
 
             var FieldTreasureMst = MissionInfo[GameObject.FieldTreasureMst];
             var itemsTreasure = new List<String>();
+            var materiaTreasure = new List<String>();
             var equipmentTreasure = new List<String>();
             var recipeTreasure = new List<String>();
             var newSwitches = new List<String>();
@@ -850,6 +900,8 @@ namespace BraveHaxvius
                         itemsTreasure.Add(item);
                     else if (item.StartsWith("21"))
                         equipmentTreasure.Add(item);
+                    else if (item.StartsWith("22"))
+                        materiaTreasure.Add(item);
                     else if (item.StartsWith("60"))
                         recipeTreasure.Add(item);
                     else
@@ -858,6 +910,7 @@ namespace BraveHaxvius
             }
 
             var ItemsTreasure = exploreTreasure ? String.Join(",", itemsTreasure) : "";
+            var MaterialTreasure = exploreTreasure ? String.Join(",", materiaTreasure) : "";
             var EquipmentTreasure = exploreTreasure ? String.Join(",", equipmentTreasure) : "";
             var RecipeTreasure = exploreTreasure ? String.Join(",", recipeTreasure) : "";
             var NewSwitches = String.Join(",", newSwitches);
@@ -882,6 +935,10 @@ namespace BraveHaxvius
                     Logger.Out("Enemy dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
                 foreach (var item in itemStolenCount)
                     Logger.Out("Enemy stolen item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
+   	        foreach (var item in importantItemCount)
+                    Logger.Out("Enemy stolen importantItem : " + ImportantItem.ImportantItems.FindAll(i => i.ImportantId != null).First(i => item.Key.Contains(i.ImportantId)).Name + " : " + item.Value);
+		foreach (var item in equipmentCount)
+                    Logger.Out("Enemy dropped equipment : " + Equipment.Equipments.FindAll(i => i.EquipId != null).First(i => item.Key.Contains(i.EquipId)).Name + " : " + item.Value);
                 var ih = ItemsFound.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var item in ih)
                     Logger.Out("Stage dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
@@ -891,6 +948,8 @@ namespace BraveHaxvius
             {
                 foreach (var item in itemsTreasure)
                     Logger.Out("Treasure item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
+                foreach (var item in materiaTreasure)
+                    Logger.Out("Treasure materia : " + Materia.Materias.FindAll(i => i.MateriaId != null).First(i => item.Contains(i.MateriaId)).Name);
                 foreach (var eq in equipmentTreasure)
                     Logger.Out("Treasure equipment : " + Equipment.Equipments.FindAll(i => i.EquipId != null).First(i => eq.Contains(i.EquipId)).Name);
                 foreach (var r in recipeTreasure)
@@ -916,12 +975,18 @@ namespace BraveHaxvius
                 new JProperty(Variable.StolenGil, StolenGil.ToString()),
                 new JProperty("8CfoLQv5", "0"),
                 new JProperty("wQhu9G7n", "0"));
+	    if (!String.IsNullOrEmpty(EquipmentDropped))
+                 MissionResult.Add(Variable.EquipmentDropped, EquipmentDropped);
+            if (!String.IsNullOrEmpty(ImportantItemsDropped))
+                MissionResult.Add("Z6yB9eYd", ImportantItemsDropped);
             if (!String.IsNullOrEmpty(ItemsDropped))
                 MissionResult.Add(Variable.ItemsDropped, ItemsDropped);
             if (!String.IsNullOrEmpty(ItemsStolen))
                 MissionResult.Add(Variable.ItemsStolen, ItemsStolen);
             if (!String.IsNullOrEmpty(ItemsTreasure))
                 MissionResult.Add(Variable.ItemsTreasure, ItemsTreasure);
+            if (!String.IsNullOrEmpty(MaterialTreasure))
+                MissionResult.Add(Variable.ItemsTreasure, MaterialTreasure);
             if (!String.IsNullOrEmpty(ItemsFound))
                 MissionResult.Add(Variable.ItemsFound, ItemsFound);
             if (!String.IsNullOrEmpty(EquipmentTreasure))
@@ -946,6 +1011,7 @@ namespace BraveHaxvius
             MissionResult.Add(Variable.EncounteredMonsters, EncounteredMonsters);
             MissionResult.Add(Variable.MonstersKilledCount, MonstersKilledCount);
             MissionResult.Add(Variable.MonsterParts, MonsterParts);
+			MissionResult.Add("nZ1gR2h3","1562956924000-207000107@10010:999:999:999:999:999");
 
             var lbTotal = 1;
 
@@ -971,15 +1037,15 @@ namespace BraveHaxvius
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_LB_CRISTAL"),
                                              new JProperty(Variable.ArchiveValue, "12")),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_CHAIN_TURN"),
-                                             new JProperty(Variable.ArchiveValue, "0")),
+                                             new JProperty(Variable.ArchiveValue, new Random().Next(50,100))),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_SPARK_CHAIN_TURN"),
-                                             new JProperty(Variable.ArchiveValue, "0")),
+                                             new JProperty(Variable.ArchiveValue, new Random().Next(10,40))),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_ELEMENT_CHAIN_TURN"),
                                              new JProperty(Variable.ArchiveValue, "0")),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_DAMAGE_HIT"),
                                              new JProperty(Variable.ArchiveValue, ((Int32)TotalDamage / 4).ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_ELEMENT_CHAIN_TURN"),
-                                             new JProperty(Variable.ArchiveValue, "0")),
+                                             new JProperty(Variable.ArchiveValue, new Random().Next(10,40))),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_MISSION_BATTLE_WIN"),
                                              new JProperty(Variable.ArchiveValue, EncounterIds.Split(new char[1] { ',' }).Count().ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_LB_USE"),
@@ -1033,6 +1099,8 @@ namespace BraveHaxvius
                     //29 no espers
                     //69 exclude rain/lasswell 2001
                     //20 no abilities
+					// syntax = wave ID @ monster ID : 1 @ killing move type : killing move ID
+						// killing move types 1 = ABILITY, 2 = MAGIC, 3 = ESPER, 5 = LIMIT BURST
                     if (challenge.ChallengeRequirement.StartsWith("34:"))
                     {
                         var partyOfAtleast = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; // +1
@@ -1051,6 +1119,8 @@ namespace BraveHaxvius
                         //var KillBossWithLb = KillBossWithLbObj[Variable.MissionWaveId].ToString() + "@" + KillBossWithLbObj[Variable.MonsterPartId].ToString() + ":1@5:" + "100000102";
                         //MissionChallenge.Add(Variable.LimitBreaks, "100000102:6");
                         // MissionChallenge.Add(Variable.KnockOuts, "");
+						// syntax = wave ID @ monster ID : 1 @ killing move type : killing move ID
+						// killing move types 1 = ABILITY, 2 = MAGIC, 3 = ESPER, 5 = LIMIT BURST
                     }
                     else if (challenge.ChallengeRequirement.StartsWith("15:")) // magic
                     {
@@ -1134,8 +1204,8 @@ namespace BraveHaxvius
             };
             if (GetUserInfo != null)
                 inputList.Add(new JProperty(GameObject.UserCarryItemInfo, new JArray(new JObject(new JProperty(Variable.Items_jsvoa0I2, GetUserInfo[GameObject.UserCarryItemInfo][0][Variable.Items_jsvoa0I2].ToString())))));
-            
-            var MissionEnd = Network.SendPacket(Request.MissionEnd, inputList);
+            var MissionEndHolder = (isParadeMissionEnd) ? Request.ParadeMissionEnd : Request.MissionEnd  ;
+            var MissionEnd = Network.SendPacket(MissionEndHolder, inputList);
             return MissionEnd;
         }
         public void LevelUnit(Unit unit)
@@ -1325,6 +1395,184 @@ namespace BraveHaxvius
             });
 
         }
+
+        public class MyUnit
+        {
+            public MyUnit()
+            {
+                Stats = new Dictionary<string, string>();
+            }
+
+            public MyUnit(Unit unit)
+            {
+                Stats = new Dictionary<string, string>();
+
+                Name = unit.Name;
+                UniqueId = unit.UniqueUnitId;
+                BaseId = unit.BaseUnitId;
+                UnitId = unit.UnitId;
+
+                Stats["hp"] = unit.UnitHp;
+                Stats["mp"] = unit.UnitMp;
+                Stats["atk"] = unit.UnitAtk;
+                Stats["mag"] = unit.UnitMag;
+                Stats["def"] = unit.UnitDef;
+                Stats["spr"] = unit.UnitSpr;
+            }
+
+            public MyUnit(JToken junit, Unit unit)
+            {
+                Stats = new Dictionary<string, string>();
+
+                Name = unit.Name;
+                UniqueId = unit.UniqueUnitId;
+                BaseId = unit.BaseUnitId;
+                UnitId = unit.UnitId;
+
+                Update(junit);
+            }
+
+            public readonly String Name;
+            public readonly String UniqueId;
+            public readonly String BaseId;
+            public readonly String UnitId;
+
+            public int TMR;
+            public int LastTMR;
+            public int STMR; //o6m7L38B
+            public int LastLevel;
+            public int Level;
+            public int LastExp;
+            public int Exp;
+            public Dictionary<String, string> Stats;
+            public int UnitLBLevel;
+
+            public void Update(JToken unit)
+            {
+                LastExp = Exp;
+                LastLevel = Level;
+                LastTMR = TMR;
+
+                Int32.TryParse(unit[Variable.TotalExperience].ToString(), out Exp);
+                Int32.TryParse(unit[Variable.Level].ToString(), out Level);
+                Int32.TryParse(unit[Variable.UnitTmr].ToString(), out TMR);
+                Int32.TryParse(unit[Variable.UnitLbLvl].ToString(), out UnitLBLevel);
+
+                Stats["hp"] = unit[Variable.UnitHp].ToString();
+                Stats["mp"] = unit[Variable.UnitMp].ToString();
+                Stats["atk"] = unit[Variable.UnitAtk].ToString();
+                Stats["mag"] = unit[Variable.UnitMag].ToString();
+                Stats["def"] = unit[Variable.UnitDef].ToString();
+                Stats["spr"] = unit[Variable.UnitSpr].ToString();
+            }
+        }
+
+        public MyParty MyCurrentParty;
+
+        public class MyParty
+        {
+            public MyParty(int partyId)
+            {
+                MyPartyUnits = new List<MyUnit>();
+                MyPartyId = partyId;
+            }
+
+            public int MyPartyId;
+
+            public String CurrentPartyNames
+            {
+                get
+                {
+                    return string.Format("{0}", string.Join(", ", MyPartyUnits.Select(x => x.Name)));
+                }
+            }
+            public JToken PartyDeck { get; set; }
+            public List<String> CurrentPartyUnits { get; set; }
+            public List<MyUnit> MyPartyUnits { get; set; }
+
+            public void SetMyUnits(Unit unit)
+            {
+                var myUnit = MyPartyUnits.FirstOrDefault(x => x.UniqueId == unit.UniqueUnitId);
+                if (myUnit == null)
+                {
+                    MyPartyUnits.Add(new MyUnit(unit));
+                }
+            }
+
+            public void UpdateMyUnits(JToken setPartyUnits, Unit unit)
+            {
+                setPartyUnits.ToList().ForEach(u =>
+                {
+                    var myUnit = MyPartyUnits.FirstOrDefault(x => x.UniqueId == u[Variable.UniqueUnitId].ToString());
+                    if (myUnit != null)
+                    {
+                        myUnit.Update(u);
+                    }
+                    else
+                    {
+                        MyPartyUnits.Add(new MyUnit(u, unit));
+                    }
+                });
+            }
+        }
+
+        private List<MyParty> _myParties;
+        public List<MyParty> MyParties
+        {
+            get
+            {
+                if (_myParties == null)
+                {
+                    _myParties = new List<MyParty>();
+                }
+                return _myParties;
+            }
+        }
+
+        public int SelectedParty { get => _selectedParty; set => _selectedParty = value; }
+
+        public void UpdateCurrentParty(JObject setParty = null, int? newPartyId = null)
+        {
+            // Are we updating or checking existing data?
+            JObject partyCheck = setParty ?? GetUserInfo;
+
+            // get the selected Party
+            /// TODO: FIX THIS! Need to figure out the ID from response.
+            SelectedParty = newPartyId ?? int.Parse(GetUserInfo[GameObject.UserActualInfo].First()[Variable.CurrentParty].ToString()); // only on GetUserInfo
+
+            // Update User Info with correct selected party
+            GetUserInfo[GameObject.UserActualInfo].First()[Variable.CurrentParty] = SelectedParty.ToString();
+
+            // Check if Party exists in our parties
+            if (MyParties.FirstOrDefault(x => x.MyPartyId == SelectedParty) == null)
+            {
+                // Add party
+                MyParties.Add(new MyParty(SelectedParty));
+            }
+
+            // Get the party we just created or already exists
+            MyCurrentParty = MyParties.FirstOrDefault(x => x.MyPartyId == SelectedParty);
+
+            // If we're switching parties, or looking in User Data, go here
+            if (setParty == null || setParty[GameObject.UserPartyDeckInfo_5Eb0Rig6] != null)
+            {
+                var party = partyCheck[GameObject.UserPartyDeckInfo_5Eb0Rig6][SelectedParty]; // only on GetUserInfo
+                MyCurrentParty.CurrentPartyUnits = party[Variable.PartyUnits].ToString().Split(new char[1] { ',' }).ToList(); //  only on GetUserInfo                
+                MyCurrentParty.CurrentPartyUnits.ForEach(x => MyCurrentParty.SetMyUnits(Units.FirstOrDefault(u => u.UniqueUnitId == x.Split(':')[2])));
+                MyCurrentParty.PartyDeck = partyCheck[GameObject.UserPartyDeckInfo_5Eb0Rig6];
+            }
+            else
+            {
+                // If we're updating after battle, go here
+                var jToken = partyCheck[GameObject.UserUnitInfo_8gSkPD6b];
+                // Safety check
+                if (jToken != null)
+                {
+                    MyCurrentParty.CurrentPartyUnits.ForEach(x => MyCurrentParty.UpdateMyUnits(jToken, Units.FirstOrDefault(u => u.UniqueUnitId == x.Split(':')[2])));
+                }
+            }
+        }
+
         public JObject SetParty(String unitId, Int32 partyId)
         {
             var partyDeckInfo = GetUserInfo[GameObject.UserPartyDeckInfo_5Eb0Rig6][partyId];
@@ -1340,6 +1588,26 @@ namespace BraveHaxvius
                     new JProperty(GameObject.UserBeastDeckInfo_49rQB3fP, GetUserInfo[GameObject.UserBeastDeckInfo_49rQB3fP]));
             return PartyDeckEdit;
         }
+
+        public JObject ChangeParty(Int32 partyId)
+        {
+            //var partyDeckInfo = GetUserInfo[GameObject.UserPartyDeckInfo_5Eb0Rig6][partyId];
+            //partyDeckInfo[Variable.PartyUnits] = "0:1:" + unitId;
+            var PartyDeckEdit = Network.SendPacket(Request.PartyDeckEdit,
+                    new JProperty(Variable.PartySelect, new JArray(new JObject(
+                            new JProperty(Variable.PartyId, partyId.ToString()),
+                            new JProperty(Variable.CurrentParty, partyId.ToString()),
+                            new JProperty(Variable.CompanionParty, GetUserInfo[GameObject.UserActualInfo][0][Variable.CompanionParty].ToString()),
+                            new JProperty(Variable.ColosseumParty, GetUserInfo[GameObject.UserActualInfo][0][Variable.ColosseumParty].ToString()),
+                            new JProperty(Variable.ArenaParty, GetUserInfo[GameObject.UserActualInfo][0][Variable.ArenaParty].ToString())))),
+                    new JProperty(GameObject.UserPartyDeckInfo_5Eb0Rig6, GetUserInfo[GameObject.UserPartyDeckInfo_5Eb0Rig6]),
+                    new JProperty(GameObject.UserBeastDeckInfo_49rQB3fP, GetUserInfo[GameObject.UserBeastDeckInfo_49rQB3fP]));
+
+            UpdateCurrentParty(PartyDeckEdit, partyId);
+
+            return PartyDeckEdit;
+        }
+
         public void SetEquipment(String unitId, String equipment, String materia)
         {
             Network.SendPacket(Request.UnitEquip,
@@ -1389,6 +1657,8 @@ namespace BraveHaxvius
         public JObject UpdateGetUserInfo()
         {
             GetUserInfo = Network.SendPacket(Request.GetUserInfo);
+            GetUserInfo2 = Network.SendPacket(Request.GetUserInfo2);
+            GetUserInfo3 = Network.SendPacket(Request.GetUserInfo3);
             return GetUserInfo;
         }
         public void UpdateUserName(String name, String msg)
@@ -1507,7 +1777,7 @@ namespace BraveHaxvius
                             new JProperty(Variable.ArchiveName, "ARENA_TOTAL_LB_CRISTAL"),
                             new JProperty(Variable.Value, new Random().Next(40, 60).ToString())))));
                 orbs = UInt16.Parse(RbEnd[GameObject.UserTeamInfo][0][Variable.ColosseumOrb].ToString());
-                Thread.Sleep(15000);
+                Thread.Sleep(10000);
             }
         }
         void ClearRaid()
@@ -1523,7 +1793,61 @@ namespace BraveHaxvius
                 Thread.Sleep(15000);
             }
         }
-        public void DumpAcc(String userId, String pw, String gumiId, String gumiToken)
+
+        private int? _raidOrbs = null;
+        public int RaidOrbs
+        {
+            get
+            {
+                if (_raidOrbs == null)
+                {
+                    _raidOrbs = UInt16.Parse(GetUserInfo[GameObject.UserTeamInfo][0][Variable.RaidOrb].ToString());
+                }
+                return _raidOrbs.HasValue ? _raidOrbs.Value : 0;
+            }
+            set
+            {
+                _raidOrbs = value;
+            }
+        }
+
+        private int? _arenaOrbs = null;
+        private int _selectedParty = 0;
+
+        public int ArenaOrbs
+        {
+            get
+            {
+                if (_arenaOrbs == null)
+                {
+                    _arenaOrbs = UInt16.Parse(GetUserInfo[GameObject.UserTeamInfo][0][Variable.RaidOrb].ToString());
+                }
+                return _arenaOrbs.HasValue ? _arenaOrbs.Value : 0;
+            }
+            set
+            {
+                _arenaOrbs = value;
+            }
+        }
+
+        public bool LoggedIn { get; set; }
+
+        public void ClearRaid(Mission doRaidMission, int raidPartyId)
+        {
+            if (raidPartyId >= 0 && raidPartyId < 5 && MyCurrentParty.MyPartyId != raidPartyId)
+            {
+                ChangeParty(raidPartyId);
+            }
+
+            while (RaidOrbs > 0)
+            {
+                var missionResult = DoMission(doRaidMission, collectLoot: true, SleepTime: 1500);
+                RaidOrbs = UInt16.Parse(missionResult[GameObject.UserTeamInfo][0][Variable.RaidOrb].ToString());
+                Thread.Sleep(1500);
+            }
+        }
+
+        /*public void DumpAcc(String userId, String pw, String gumiId, String gumiToken)
         {
             LoginUnlinkedAccount(userId, pw, gumiId, gumiToken);
         }
@@ -1551,6 +1875,6 @@ namespace BraveHaxvius
                 var count = ability.Split(new char[1] { ':' })[1];
              //   Logger.Out("{0} - {1}", Materia.Materias.First(m => m.MateriaId == matIt).Name, count);
             }
-        }
+        }*/
     }
 }
