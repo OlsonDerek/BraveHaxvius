@@ -1,4 +1,4 @@
-//MST_UNIT_NAME_401012517^Whimsical Winter Tiana^Whimsical Winter Tiana---VersionControl items removed:0
+//MST_UNIT_NAME_100037317^Tulien^Tulien---VersionControl items removed:0
 using System;
 using System.Collections.Generic;
 
@@ -2564,7 +2564,13 @@ namespace BraveHaxvius.Data
         public static readonly Unit berkillingMachine_306001107237 = new Unit { Name = "Überkilling Machine", UnitId = "306001107"};
         public static readonly Unit WhimsicalWinterTiana_4010125070 = new Unit { Name = "Whimsical Winter Tiana", UnitId = "401012507", Description = "NV Tiana", Rarity = "7", TribeId2 = "5", GenderId = "2", BaseUnitId = "401012507", GameId = "11001", CountId = "8363", UnitMaxLevel = "120", EquipIds = "1,6,11,13,40,41,50,51,53,60", IsCombatUnit = "1", IsPotUnit = "0", IsSummonable = "1", MateriaSlots = "4", UnitHp = "1604,4860,900,450", UnitMp = "96,290,150,75", UnitAtk = "63,190,65,32", UnitDef = "73,220,65,32", UnitMag = "91,275,65,32", UnitSpr = "73,220,65,32", ElementResists = "20,0,20,20,20,20,0,0", StatusResists = "100,0,100,100,100,0,0,100", PhysicalResist = "0", MagicalResist = "0", MagicAffinity = "0,0,0,0", BattleUnitId = "401012507", IsMoogle = "0", UnitTmrId = "21:1100000559:1:1000:10:30:50", VisionCardID = "0", BitNumber = "8363", AttackFrames = "120:20:3:2-140:80:3:2", EffectFrames = "98:1902523:1&120:1902524:1", JobId = "40", UnitXpGain = "0", UnitGilSell = "6000", UnitLbGain = "0"};
         public static readonly Unit WhimsicalWinterTiana_4010125171 = new Unit { Name = "Whimsical Winter Tiana", UnitId = "401012517", Description = "NV Tiana", Rarity = "7", TribeId2 = "5", GenderId = "2", BaseUnitId = "401012517", GameId = "11001", CountId = "8364", UnitMaxLevel = "120", EquipIds = "1,6,11,13,40,41,50,51,53,60", IsCombatUnit = "1", IsPotUnit = "0", IsSummonable = "1", MateriaSlots = "4", UnitHp = "1650,5000,900,450", UnitMp = "96,290,150,75", UnitAtk = "63,190,65,32", UnitDef = "66,200,65,32", UnitMag = "99,300,65,32", UnitSpr = "66,200,65,32", ElementResists = "20,0,20,20,20,20,0,0", StatusResists = "100,0,100,100,100,0,0,100", PhysicalResist = "0", MagicalResist = "0", MagicAffinity = "0,0,0,0", BattleUnitId = "401012517", IsMoogle = "0", UnitTmrId = "21:1100000559:1:1000:10:30:50", VisionCardID = "0", BitNumber = "8364", AttackFrames = "50:20:3:2-70:20:3:2-90:20:3:2-105:40:3:2", EffectFrames = "45:1902534:1&110:1902533:1", JobId = "40", UnitXpGain = "0", UnitGilSell = "6000", UnitLbGain = "0"};
+        public static readonly Unit Taivas_1000359070 = new Unit { Name = "Taivas", UnitId = "100035907", Description = "タイヴァス", Rarity = "7", TribeId2 = "5", GenderId = "1", BaseUnitId = "100035907", GameId = "11001", CountId = "2333", UnitMaxLevel = "120", EquipIds = "3,40,41,50,51,52,60", IsCombatUnit = "1", IsPotUnit = "0", IsSummonable = "1", MateriaSlots = "4", UnitHp = "1650,5000,900,450", UnitMp = "99,300,150,75", UnitAtk = "99,300,65,32", UnitDef = "73,220,65,32", UnitMag = "49,148,65,32", UnitSpr = "96,290,65,32", ElementResists = "20,20,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,100,0,0", PhysicalResist = "0", MagicalResist = "0", MagicAffinity = "0,0,0,0", BattleUnitId = "100035907", IsMoogle = "0", UnitTmrId = "21:303011500:1:1000:10:30:50", VisionCardID = "0", BitNumber = "2630", AttackFrames = "56:30:3:2-72:70:3:2", EffectFrames = "54:1000300:1&70:1000300:1", JobId = "1", UnitXpGain = "0", UnitGilSell = "6000", UnitLbGain = "0"};
+        public static readonly Unit Taivas_1000359171 = new Unit { Name = "Taivas", UnitId = "100035917", Description = "タイヴァス", Rarity = "7", TribeId2 = "5", GenderId = "1", BaseUnitId = "100035917", GameId = "11001", CountId = "2333", UnitMaxLevel = "120", EquipIds = "3,40,41,50,51,52,60", IsCombatUnit = "1", IsPotUnit = "0", IsSummonable = "1", MateriaSlots = "4", UnitHp = "1650,5000,900,450", UnitMp = "99,300,150,75", UnitAtk = "99,300,65,32", UnitDef = "73,220,65,32", UnitMag = "49,148,65,32", UnitSpr = "96,290,65,32", ElementResists = "20,20,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,100,0,0", PhysicalResist = "0", MagicalResist = "0", MagicAffinity = "0,0,0,0", BattleUnitId = "100035917", IsMoogle = "0", UnitTmrId = "21:303011500:1:1000:10:30:50", VisionCardID = "0", BitNumber = "2631", AttackFrames = "56:30:3:2-72:70:3:2", EffectFrames = "54:1000300:1&70:1000300:1", JobId = "1", UnitXpGain = "0", UnitGilSell = "6000", UnitLbGain = "0"};
+        public static readonly Unit Tulien_1000373070 = new Unit { Name = "Tulien", UnitId = "100037307", Description = "トゥーリエン", Rarity = "7", TribeId2 = "5", GenderId = "1", BaseUnitId = "100037307", GameId = "11001", CountId = "2334", UnitMaxLevel = "120", EquipIds = "8,10,40,41,50,51,60", IsCombatUnit = "1", IsPotUnit = "0", IsSummonable = "1", MateriaSlots = "4", UnitHp = "1650,5000,900,450", UnitMp = "66,200,150,75", UnitAtk = "89,270,65,32", UnitDef = "50,150,65,32", UnitMag = "49,148,65,32", UnitSpr = "56,170,65,32", ElementResists = "0,0,0,0,20,20,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", MagicAffinity = "0,0,0,0", BattleUnitId = "100037307", IsMoogle = "0", UnitTmrId = "22:504242462:1:1000:10:30:50", VisionCardID = "0", BitNumber = "2632", AttackFrames = "16:30:3:2-56:70:3:2", EffectFrames = "14:1000220:1&54:1000480:1", JobId = "1", UnitXpGain = "0", UnitGilSell = "6000", UnitLbGain = "0"};
+        public static readonly Unit Tulien_1000373171 = new Unit { Name = "Tulien", UnitId = "100037317", Description = "トゥーリエン", Rarity = "7", TribeId2 = "5", GenderId = "1", BaseUnitId = "100037317", GameId = "11001", CountId = "2334", UnitMaxLevel = "120", EquipIds = "8,10,40,41,50,51,60", IsCombatUnit = "1", IsPotUnit = "0", IsSummonable = "1", MateriaSlots = "4", UnitHp = "1650,5000,900,450", UnitMp = "66,200,150,75", UnitAtk = "89,270,65,32", UnitDef = "50,150,65,32", UnitMag = "49,148,65,32", UnitSpr = "56,170,65,32", ElementResists = "0,0,0,0,20,20,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", MagicAffinity = "0,0,0,0", BattleUnitId = "100037317", IsMoogle = "0", UnitTmrId = "22:504242462:1:1000:10:30:50", VisionCardID = "0", BitNumber = "2633", AttackFrames = "16:30:3:2-56:70:3:2", EffectFrames = "14:1000220:1&54:1000480:1", JobId = "1", UnitXpGain = "0", UnitGilSell = "6000", UnitLbGain = "0"};
 /*VersionControldefinitions*/
+
+
 
 
 		public static readonly List<Unit> Units = new List<Unit>
@@ -5085,7 +5091,13 @@ namespace BraveHaxvius.Data
            berkillingMachine_306001107237,
            WhimsicalWinterTiana_4010125070,
            WhimsicalWinterTiana_4010125171,
+           Taivas_1000359070,
+           Taivas_1000359171,
+           Tulien_1000373070,
+           Tulien_1000373171,
 /*VersionControldefinitionsList*/
+
+
 
 		};
     }

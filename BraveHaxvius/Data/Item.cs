@@ -1,4 +1,4 @@
-//MST_ITEM_NAME_310000850^Whimsical Winter Tiana Fragment^Whimsical Winter Tiana Fragment---VersionControl
+//MST_ITEM_NAME_250004500^Tulien Fragment^Tulien Fragment---VersionControl
 using System;
 using System.Collections.Generic;
 
@@ -2283,7 +2283,22 @@ namespace BraveHaxvius.Data
         public static readonly Item ObsidianSilkThread_2350391008 = new Item { Name = "Obsidian Silk Thread", ItemId = "235039100", Description = "黒曜の絹糸", EquipmentRarity = "5", CountId = "1996", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "999", ItemBuyPrice = "2000", ItemSellPrice = "200", ItemIdClone = "235039100", BitNumber = "2096"};
         public static readonly Item CrimsonLotusDye_2350392009 = new Item { Name = "Crimson Lotus Dye", ItemId = "235039200", Description = "紅蓮の染色液", EquipmentRarity = "5", CountId = "1997", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "999", ItemBuyPrice = "2000", ItemSellPrice = "200", ItemIdClone = "235039200", BitNumber = "2097"};
         public static readonly Item WhimsicalWinterTianaFragment_31000085010 = new Item { Name = "Whimsical Winter Tiana Fragment", ItemId = "310000850", Description = "Tiana Fragment", EquipmentRarity = "8", CountId = "9839", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "999", ItemBuyPrice = "0", ItemSellPrice = "0", ItemIdClone = "310000850", BitNumber = "9839"};
+        public static readonly Item ADestinedDutyCertificate_1063144000 = new Item { Name = "A Destined Duty Certificate", ItemId = "106314400", Description = "「運命の任務」の討伐証", EquipmentRarity = "3", CountId = "3042", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "99999", ItemBuyPrice = "500", ItemSellPrice = "10", ItemIdClone = "106314400", BitNumber = "3042"};
+        public static readonly Item NVAwakenableExchangeTicketADestinedDuty_1062227001 = new Item { Name = "NV Awakenable 5★ Exchange Ticket (A Destined Duty)", ItemId = "106222700", Description = "FFBE 運命の任務 覚醒NV対象★5ユニット交換チケット", EquipmentRarity = "8", CountId = "3037", IsPotUnit = "5", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "99999", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "106222700", BitNumber = "3037"};
+        public static readonly Item GuaranteedNVSummonTicketADestinedDuty_1062226002 = new Item { Name = "Guaranteed NV Summon Ticket (A Destined Duty)", ItemId = "106222600", Description = "FFBE 運命の任務 NV確定召喚チケット", EquipmentRarity = "8", CountId = "3036", IsPotUnit = "5", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "99999", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "106222600", BitNumber = "3036"};
+        public static readonly Item GrossaffeOmegaChronicleMedal_2350410003 = new Item { Name = "Grossaffe Omega Chronicle Medal", ItemId = "235041000", Description = "グロースアッフェ・オメガ討伐勲章", EquipmentRarity = "5", CountId = "3043", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "99999", ItemBuyPrice = "2000", ItemSellPrice = "200", ItemIdClone = "235041000", BitNumber = "3043"};
+        public static readonly Item DarkVisionsXIXTicket_12090015234 = new Item { Name = "Dark Visions XIX Ticket", ItemId = "1209001523", Description = "Dark Visions XIX Ticket", EquipmentRarity = "8", CountId = "9859", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "99999", ItemBuyPrice = "10", ItemSellPrice = "10", ItemIdClone = "1209001257", BitNumber = "9859"};
+        public static readonly Item SummonCoinTaivas_12090015285 = new Item { Name = "Summon Coin (Taivas)", ItemId = "1209001528", Description = "Summon Coin (Taivas)", EquipmentRarity = "8", CountId = "9876", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "9999", ItemBuyPrice = "10", ItemSellPrice = "10", ItemIdClone = "1209001231", BitNumber = "9876"};
+        public static readonly Item NVExchangeTicketTaivas_12090015296 = new Item { Name = "NV Exchange Ticket (Taivas)", ItemId = "1209001529", Description = "NV Exchange Ticket (Taivas)", EquipmentRarity = "8", CountId = "9877", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "9999", ItemBuyPrice = "1000", ItemSellPrice = "1000", ItemIdClone = "1209001352", BitNumber = "9877"};
+        public static readonly Item TaivasFragment_2500041007 = new Item { Name = "Taivas Fragment", ItemId = "250004100", Description = "タイヴァスの欠片", EquipmentRarity = "8", CountId = "3046", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "999", ItemBuyPrice = "0", ItemSellPrice = "0", ItemIdClone = "250004100", BitNumber = "3046"};
+        public static readonly Item ExchangeTicketLeaveThingstoMe_12090015260 = new Item { Name = "Exchange Ticket (Leave Things to Me!)", ItemId = "1209001526", Description = "Exchange Ticket (GLEX VC)", EquipmentRarity = "8", CountId = "9874", IsPotUnit = "5", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "99999", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "106213400", BitNumber = "9874"};
+        public static readonly Item SummonCoinTulien_12090015301 = new Item { Name = "Summon Coin (Tulien)", ItemId = "1209001530", Description = "Summon Coin (Tulien)", EquipmentRarity = "8", CountId = "9878", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "9999", ItemBuyPrice = "10", ItemSellPrice = "10", ItemIdClone = "1209001231", BitNumber = "9878"};
+        public static readonly Item NVExchangeTicketTulien_12090015312 = new Item { Name = "NV Exchange Ticket (Tulien)", ItemId = "1209001531", Description = "NV Exchange Ticket (Tulien)", EquipmentRarity = "8", CountId = "9879", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "9999", ItemBuyPrice = "1000", ItemSellPrice = "1000", ItemIdClone = "1209001352", BitNumber = "9879"};
+        public static readonly Item NVFragmentSelectTicketNVFragmentStepUpVI_12090015363 = new Item { Name = "NV Fragment Select Ticket (NV Fragment Step-Up VI)", ItemId = "1209001536", Description = "NV Fragment Select Ticket (NV Fragment Step-Up VI)", EquipmentRarity = "8", CountId = "9884", IsPotUnit = "5", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "9999", ItemBuyPrice = "100000", ItemSellPrice = "0", ItemIdClone = "1209001326", BitNumber = "9884"};
+        public static readonly Item TulienFragment_2500045004 = new Item { Name = "Tulien Fragment", ItemId = "250004500", Description = "トゥーリエンの欠片", EquipmentRarity = "8", CountId = "3055", IsPotUnit = "0", KeyName = "0", ProcessType = "", ProcessFrame = "", Ha9G5sCS = "", ItemStack = "999", ItemBuyPrice = "0", ItemSellPrice = "0", ItemIdClone = "250004500", BitNumber = "3055"};
 /*VersionControldefinitions*/
+
+
 
 
 
@@ -4551,7 +4566,22 @@ namespace BraveHaxvius.Data
            ObsidianSilkThread_2350391008,
            CrimsonLotusDye_2350392009,
            WhimsicalWinterTianaFragment_31000085010,
+           ADestinedDutyCertificate_1063144000,
+           NVAwakenableExchangeTicketADestinedDuty_1062227001,
+           GuaranteedNVSummonTicketADestinedDuty_1062226002,
+           GrossaffeOmegaChronicleMedal_2350410003,
+           DarkVisionsXIXTicket_12090015234,
+           SummonCoinTaivas_12090015285,
+           NVExchangeTicketTaivas_12090015296,
+           TaivasFragment_2500041007,
+           ExchangeTicketLeaveThingstoMe_12090015260,
+           SummonCoinTulien_12090015301,
+           NVExchangeTicketTulien_12090015312,
+           NVFragmentSelectTicketNVFragmentStepUpVI_12090015363,
+           TulienFragment_2500045004,
 /*VersionControldefinitionsList*/
+
+
 
 
 

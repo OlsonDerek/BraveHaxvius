@@ -298,3 +298,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 *.gz
+/Client/Properties/Resources.Designer.cs
+/Client/Properties/Resources.resx

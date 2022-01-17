@@ -351,6 +351,7 @@ namespace Client
                 }
             }
             StartMission.Enabled = true;
+            startQueuedMissions.Enabled = true;
 
             Logger.Out("Run Complete!");
         }

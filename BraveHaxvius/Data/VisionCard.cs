@@ -1,4 +1,4 @@
-//MST_VISION_CARD_NAME_401002401^Try, Try Again^Try, Try Again---VersionControl items removed:0
+//MST_VISION_CARD_NAME_100004501^A Hero Arrives!^A Hero Arrives!---VersionControl items removed:0
 using System;
 using System.Collections.Generic;
 
@@ -121,7 +121,12 @@ namespace BraveHaxvius.Data
         public static readonly VisionCard VacationAllIEverWanted_10000430155 = new VisionCard { Name = "Vacation, All I Ever Wanted", VisionCardID = "100004301", Description = "水着", Rarity = "1", GameId = "11001", CountId = "77", UnitMaxLevel = "10", UnitHp = "0,0,0,0", UnitMp = "0,0,0,0", UnitAtk = "0,0,0,0", UnitDef = "0,0,0,0", UnitMag = "30,60,0,0", UnitSpr = "30,60,0,0", ElementResists = "0,0,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", UnitXpGain = "6000", BitNumber = "77", IsPotUnit = "0", UnitGilSell = "400", JobId = "909"};
         public static readonly VisionCard AlenavstheAbominableShowmen_30600010156 = new VisionCard { Name = "Alena vs. the Abominable Showmen", VisionCardID = "306000101", Description = "アリーナVSベロリンマン", Rarity = "1", GameId = "20006", CountId = "70", UnitMaxLevel = "10", UnitHp = "0,0,0,0", UnitMp = "0,0,0,0", UnitAtk = "50,100,0,0", UnitDef = "0,0,0,0", UnitMag = "50,100,0,0", UnitSpr = "0,0,0,0", ElementResists = "0,0,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", UnitXpGain = "6000", BitNumber = "70", IsPotUnit = "0", UnitGilSell = "400", JobId = "909"};
         public static readonly VisionCard TryTryAgain_4010024010 = new VisionCard { Name = "Try, Try Again", VisionCardID = "401002401", Description = "Try, Try Again", Rarity = "1", GameId = "11001", CountId = "9023", UnitMaxLevel = "10", UnitHp = "0,0,0,0", UnitMp = "0,0,0,0", UnitAtk = "0,0,0,0", UnitDef = "0,0,0,0", UnitMag = "60,110,0,0", UnitSpr = "0,0,0,0", ElementResists = "0,0,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", UnitXpGain = "6000", BitNumber = "9023", IsPotUnit = "0", UnitGilSell = "400", JobId = "909"};
+        public static readonly VisionCard ASpecialMission_1000044010 = new VisionCard { Name = "A Special Mission", VisionCardID = "100004401", Description = "わけありの任務", Rarity = "1", GameId = "11001", CountId = "78", UnitMaxLevel = "1", UnitHp = "0,0,0,0", UnitMp = "0,0,0,0", UnitAtk = "125,125,0,0", UnitDef = "0,0,0,0", UnitMag = "0,0,0,0", UnitSpr = "0,0,0,0", ElementResists = "0,0,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", UnitXpGain = "6000", BitNumber = "78", IsPotUnit = "0", UnitGilSell = "400", JobId = "909"};
+        public static readonly VisionCard LeaveThingstoMe_4010026010 = new VisionCard { Name = "Leave Things to Me!", VisionCardID = "401002601", Description = "Leave Things to Me!", Rarity = "1", GameId = "11001", CountId = "9026", UnitMaxLevel = "1", UnitHp = "0,0,0,0", UnitMp = "0,0,0,0", UnitAtk = "110,110,0,0", UnitDef = "110,110,0,0", UnitMag = "0,0,0,0", UnitSpr = "0,0,0,0", ElementResists = "0,0,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", UnitXpGain = "6000", BitNumber = "9026", IsPotUnit = "0", UnitGilSell = "400", JobId = "909"};
+        public static readonly VisionCard AHeroArrives_1000045011 = new VisionCard { Name = "A Hero Arrives!", VisionCardID = "100004501", Description = "ヒーロー参上！", Rarity = "1", GameId = "11001", CountId = "79", UnitMaxLevel = "10", UnitHp = "0,0,0,0", UnitMp = "0,0,0,0", UnitAtk = "40,80,0,0", UnitDef = "40,80,0,0", UnitMag = "0,0,0,0", UnitSpr = "0,0,0,0", ElementResists = "0,0,0,0,0,0,0,0", StatusResists = "0,0,0,0,0,0,0,0", PhysicalResist = "0", MagicalResist = "0", UnitXpGain = "6000", BitNumber = "79", IsPotUnit = "0", UnitGilSell = "400", JobId = "909"};
 /*VersionControldefinitions*/
+
+
 
 
 		public static readonly List<VisionCard> VisionCards = new List<VisionCard>
@@ -218,7 +223,12 @@ namespace BraveHaxvius.Data
            VacationAllIEverWanted_10000430155,
            AlenavstheAbominableShowmen_30600010156,
            TryTryAgain_4010024010,
+           ASpecialMission_1000044010,
+           LeaveThingstoMe_4010026010,
+           AHeroArrives_1000045011,
 /*VersionControldefinitionsList*/
+
+
 
 		};
     }

@@ -745,7 +745,7 @@ namespace BraveHaxvius
         }
         public JObject DoMission(Mission mission, Boolean useFriend = false, String itemHax = null,
             String equipHax = null, String materiaHax = null, Boolean getTrophies = false, Boolean completeChallenges = false, Boolean collectLoot = false,
-            Boolean collectUnits = false, Boolean exploreTreasure = false, String lbIncrease = null, UInt16 SleepTime = 0, bool isParadeMissionEnd = false)
+            Boolean collectUnits = false, Boolean exploreTreasure = false, String lbIncrease = null, UInt16 SleepTime = 0, bool isParadeMissionEnd = false, bool raidDamage = false)
         {
             JToken reinforcement = null;
             if (useFriend)
@@ -792,7 +792,7 @@ namespace BraveHaxvius
             var BattleInfo = new List<JToken> { WaveBattleInfo, EncountInfo, ScenarioBattleInfo };
             var itemCount = new Dictionary<String, UInt16>();
             var itemStolenCount = new Dictionary<String, UInt16>();
-	    var importantItemCount = new Dictionary<String, UInt16>();
+            var importantItemCount = new Dictionary<String, UInt16>();
             var equipmentCount = new Dictionary<String, UInt16>();
             var possibleDropTypes = new List<String> { Variable.MonsterDrops, Variable.MonsterSpecialDrops };
             var unitDrops = new List<String>();
@@ -868,18 +868,21 @@ namespace BraveHaxvius
                     }
                     Experience += Int32.Parse(monsterPart[Variable.Experience].ToString());
                     Gil += Int32.Parse(monsterPart[Variable.Gil].ToString());
-                    TotalDamage += Int32.Parse(monsterPart[Variable.MonsterHp].ToString());
+                    TotalDamage += long.Parse(monsterPart[Variable.MonsterHp].ToString());
                     StolenGil += Int32.Parse(monsterPart[Variable.MonsterStealGil].ToString());
                 }
             }
 
             var UnitsDropped = collectUnits ? String.Join(",", unitDrops) : "";
             var ItemsDropped = collectLoot ? String.Join(",", itemCount.Select(k => "20:" + k.Key + ":" + k.Value)) : "";
-	    var EquipmentDropped = collectLoot ? String.Join(",", equipmentCount.Select(k => "21:" + k.Key + ":" + k.Value)) : "";
+	        var EquipmentDropped = collectLoot ? String.Join(",", equipmentCount.Select(k => "21:" + k.Key + ":" + k.Value)) : "";
             var ImportantItemsDropped = collectLoot ? String.Join(",", importantItemCount.Select(k => "23:" + k.Key + ":" + k.Value)) : "";
             var ItemsStolen = collectLoot ? String.Join(",", itemStolenCount.Select(k => "20:" + k.Key + ":" + k.Value)) : "";
-            TotalDamage = new Random().Next((int)(TotalDamage * 1.05f), (int)(TotalDamage * 1.45f));
-
+            if (raidDamage && TotalDamage < int.MaxValue)
+            {
+                TotalDamage = int.MaxValue;
+            }
+            TotalDamage = (long)((1 + new Random().NextDouble()) * TotalDamage * 1.05f);
             var FieldTreasureMst = MissionInfo[GameObject.FieldTreasureMst];
             var itemsTreasure = new List<String>();
             var materiaTreasure = new List<String>();
@@ -1031,9 +1034,9 @@ namespace BraveHaxvius
             var MissionStatistics = new JArray
             {
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_DAMAGE_TURN"),
-                                             new JProperty(Variable.ArchiveValue, ((Int32)TotalDamage / 4).ToString())),
+                                             new JProperty(Variable.ArchiveValue, ((long)TotalDamage / 4).ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_DAMAGE"),
-                                             new JProperty(Variable.ArchiveValue, ((Int32)TotalDamage).ToString())),
+                                             new JProperty(Variable.ArchiveValue, ((long)TotalDamage).ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_LB_CRISTAL"),
                                              new JProperty(Variable.ArchiveValue, "12")),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_CHAIN_TURN"),
@@ -1043,7 +1046,7 @@ namespace BraveHaxvius
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_ELEMENT_CHAIN_TURN"),
                                              new JProperty(Variable.ArchiveValue, "0")),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_DAMAGE_HIT"),
-                                             new JProperty(Variable.ArchiveValue, ((Int32)TotalDamage / 4).ToString())),
+                                             new JProperty(Variable.ArchiveValue, ((long)TotalDamage / 4).ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_ELEMENT_CHAIN_TURN"),
                                              new JProperty(Variable.ArchiveValue, new Random().Next(10,40))),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_MISSION_BATTLE_WIN"),
@@ -1788,7 +1791,7 @@ namespace BraveHaxvius
                 var RoutineRaidMenuUpdate = Network.SendPacket(Request.RoutineRaidMenuUpdate,
                     new JProperty(Variable.RoutineRaidMenuUpdate, new JArray(new JObject(
                             new JProperty(Variable.DungeonId, Mission.TheMoogleKingsCounterattack.MissionId.Substring(0, Mission.TheMoogleKingsCounterattack.MissionId.Length - 2))))));
-                var missionResult = DoMission(Mission.TheMoogleKingsCounterattack, true, null, null, null, false, false, false, false, false, null, 15000);
+                var missionResult = DoMission(Mission.TheMoogleKingsCounterattack, true, null, null, null, false, false, false, false, false, null, 15000, false, true);
                 orbs = UInt16.Parse(missionResult[GameObject.UserTeamInfo][0][Variable.RaidOrb].ToString());
                 Thread.Sleep(15000);
             }

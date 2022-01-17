@@ -337,6 +337,9 @@ namespace Client
             // startQueuedMissions
             // 
             this.startQueuedMissions.BackColor = System.Drawing.Color.Yellow;
+            this.startQueuedMissions.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.startQueuedMissions.FlatAppearance.BorderSize = 0;
+            this.startQueuedMissions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.startQueuedMissions.Location = new System.Drawing.Point(733, 260);
             this.startQueuedMissions.Name = "startQueuedMissions";
             this.startQueuedMissions.Size = new System.Drawing.Size(75, 23);
@@ -472,6 +475,8 @@ namespace Client
             // StartMission
             // 
             this.StartMission.BackColor = System.Drawing.Color.PaleGreen;
+            this.StartMission.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.StartMission.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.StartMission.Location = new System.Drawing.Point(733, 289);
             this.StartMission.Name = "StartMission";
             this.StartMission.Size = new System.Drawing.Size(75, 23);

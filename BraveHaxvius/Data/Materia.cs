@@ -1,4 +1,4 @@
-//MST_MATERIA_NAME_504241944^Raise Spirit^Raise Spirit---VersionControl items removed:179
+//MST_MATERIA_NAME_504242462^Earth Breaker^Earth Breaker---VersionControl items removed:179
 using System;
 using System.Collections.Generic;
 
@@ -1127,7 +1127,13 @@ namespace BraveHaxvius.Data
         public static readonly Materia RaiseDefense_5042419421 = new Materia { Name = "Raise Defense", MateriaId = "504241942", Description = "ディフェンスライズ", CountId = "2134815", EquipmentActiveAbility = "", EquipmentPassiveAbility = "241942", ItemStack = "999", ItemBuyPrice = "40000", ItemSellPrice = "1500", ItemIdClone = "700000077", BitNumber = "1339"};
         public static readonly Materia RaiseMagic_5042419432 = new Materia { Name = "Raise Magic", MateriaId = "504241943", Description = "マジックライズ", CountId = "2135714", EquipmentActiveAbility = "", EquipmentPassiveAbility = "241943", ItemStack = "999", ItemBuyPrice = "40000", ItemSellPrice = "1500", ItemIdClone = "700000077", BitNumber = "1340"};
         public static readonly Materia RaiseSpirit_5042419443 = new Materia { Name = "Raise Spirit", MateriaId = "504241944", Description = "マインドライズ", CountId = "2136911", EquipmentActiveAbility = "", EquipmentPassiveAbility = "241944", ItemStack = "999", ItemBuyPrice = "40000", ItemSellPrice = "1500", ItemIdClone = "700000077", BitNumber = "1341"};
+        public static readonly Materia TaivassSpirit_5042424510 = new Materia { Name = "Taivas's Spirit", MateriaId = "504242451", Description = "ソウルオブタイヴァス", CountId = "2152100", EquipmentActiveAbility = "", EquipmentPassiveAbility = "242451", ItemStack = "999", ItemBuyPrice = "200000", ItemSellPrice = "20000", ItemIdClone = "700000105", BitNumber = "1369"};
+        public static readonly Materia StoneKiller_5042248800 = new Materia { Name = "Stone Killer+", MateriaId = "504224880", Description = "ストーンキラー改", CountId = "2152080", EquipmentActiveAbility = "", EquipmentPassiveAbility = "224880", ItemStack = "999", ItemBuyPrice = "30000", ItemSellPrice = "3000", ItemIdClone = "700000079", BitNumber = "1349"};
+        public static readonly Materia ReaperEaterSense_5042425481 = new Materia { Name = "Reaper Eater Sense", MateriaId = "504242548", Description = "死霊喰らいの念", CountId = "2152107", EquipmentActiveAbility = "", EquipmentPassiveAbility = "242548", ItemStack = "999", ItemBuyPrice = "200000", ItemSellPrice = "20000", ItemIdClone = "700000079", BitNumber = "1376"};
+        public static readonly Materia EarthBreaker_5042424622 = new Materia { Name = "Earth Breaker", MateriaId = "504242462", Description = "ソイルオールダウン", CountId = "2152102", EquipmentActiveAbility = "", EquipmentPassiveAbility = "242462", ItemStack = "999", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000105", BitNumber = "1371"};
 /*VersionControldefinitions*/
+
+
 
 
 		public static readonly List<Materia> Materias = new List<Materia>
@@ -2241,7 +2247,13 @@ namespace BraveHaxvius.Data
            RaiseDefense_5042419421,
            RaiseMagic_5042419432,
            RaiseSpirit_5042419443,
+           TaivassSpirit_5042424510,
+           StoneKiller_5042248800,
+           ReaperEaterSense_5042425481,
+           EarthBreaker_5042424622,
 /*VersionControldefinitionsList*/
+
+
 
 		};
     }

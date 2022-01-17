@@ -1,4 +1,4 @@
-//MST_RECIPEBOOK_NAME_903035100^Heroic Knight's Light Armor+1^Heroic Knight's Light Armor+1---VersionControl items removed:51
+//MST_RECIPEBOOK_NAME_903052300^Tulien's Gauntlet (Heaven)^Tulien's Gauntlet (Heaven)---VersionControl items removed:51
 using System;
 using System.Collections.Generic;
 
@@ -1208,7 +1208,21 @@ namespace BraveHaxvius.Data
         public static readonly Recipe MerryTopHat_10000002841 = new Recipe { Name = "Merry Top Hat+", RecipeBookId = "1000000284", Description = "Merry Top Hat+", CountId = "90294", Gil = "0"};
         public static readonly Recipe FrostyCufflinks_10000002852 = new Recipe { Name = "Frosty Cufflinks+", RecipeBookId = "1000000285", Description = "Frosty Cufflinks+", CountId = "90295", Gil = "0"};
         public static readonly Recipe HeroicKnightsLightArmor_9030351003 = new Recipe { Name = "Heroic Knight's Light Armor+1", RecipeBookId = "903035100", Description = "英雄騎士レインの軽鎧+1", CountId = "1019", Gil = "144"};
+        public static readonly Recipe ElmontMedalofHonor_9030440000 = new Recipe { Name = "Elmont Medal of Honor+1", RecipeBookId = "903044000", Description = "エルムント王国褒章+1", CountId = "1119", Gil = "120"};
+        public static readonly Recipe ElmontMedalofHonor_9030441001 = new Recipe { Name = "Elmont Medal of Honor+2", RecipeBookId = "903044100", Description = "エルムント王国褒章+2", CountId = "1120", Gil = "300"};
+        public static readonly Recipe ElmontMedalofHonor_9030442002 = new Recipe { Name = "Elmont Medal of Honor+3", RecipeBookId = "903044200", Description = "エルムント王国褒章+3", CountId = "1121", Gil = "900"};
+        public static readonly Recipe TaivassCloak_9030443003 = new Recipe { Name = "Taivas's Cloak+1", RecipeBookId = "903044300", Description = "タイヴァスのマント+1", CountId = "1122", Gil = "120"};
+        public static readonly Recipe TaivassCloak_9030444004 = new Recipe { Name = "Taivas's Cloak+2", RecipeBookId = "903044400", Description = "タイヴァスのマント+2", CountId = "1123", Gil = "300"};
+        public static readonly Recipe TaivassCloak_9030445005 = new Recipe { Name = "Taivas's Cloak+3", RecipeBookId = "903044500", Description = "タイヴァスのマント+3", CountId = "1124", Gil = "900"};
+        public static readonly Recipe TaivassCloak_9030446006 = new Recipe { Name = "Taivas's Cloak+4", RecipeBookId = "903044600", Description = "タイヴァスのマント+4", CountId = "1125", Gil = "3000"};
+        public static readonly Recipe DarkRisingSun_9030278007 = new Recipe { Name = "Dark Rising Sun++ (10★)+10", RecipeBookId = "903027800", Description = "真・ダークライジングサン(★10)+10", CountId = "941", Gil = "240000"};
+        public static readonly Recipe DarkKaiserKnuckle_9030276008 = new Recipe { Name = "Dark Kaiser Knuckle++ (10★)+10", RecipeBookId = "903027600", Description = "真・ダークカイザーナックル(★10)+10", CountId = "939", Gil = "240000"};
+        public static readonly Recipe StoneKiller_9051015700 = new Recipe { Name = "Stone Killer+", RecipeBookId = "905101570", Description = "ストーンキラー改", CountId = "1052", Gil = "9000"};
+        public static readonly Recipe TuliensGauntletEarth_9030522001 = new Recipe { Name = "Tulien's Gauntlet (Earth)", RecipeBookId = "903052200", Description = "トゥーリエンの籠手【地】", CountId = "1209", Gil = "1000000"};
+        public static readonly Recipe TuliensGauntletHeaven_9030523002 = new Recipe { Name = "Tulien's Gauntlet (Heaven)", RecipeBookId = "903052300", Description = "トゥーリエンの籠手【天】", CountId = "1210", Gil = "1000000"};
 /*VersionControldefinitions*/
+
+
 
 
 		public static readonly List<Recipe> Recipes = new List<Recipe>
@@ -2409,7 +2423,21 @@ namespace BraveHaxvius.Data
            MerryTopHat_10000002841,
            FrostyCufflinks_10000002852,
            HeroicKnightsLightArmor_9030351003,
+           ElmontMedalofHonor_9030440000,
+           ElmontMedalofHonor_9030441001,
+           ElmontMedalofHonor_9030442002,
+           TaivassCloak_9030443003,
+           TaivassCloak_9030444004,
+           TaivassCloak_9030445005,
+           TaivassCloak_9030446006,
+           DarkRisingSun_9030278007,
+           DarkKaiserKnuckle_9030276008,
+           StoneKiller_9051015700,
+           TuliensGauntletEarth_9030522001,
+           TuliensGauntletHeaven_9030523002,
 /*VersionControldefinitionsList*/
+
+
 
 		};
     }
